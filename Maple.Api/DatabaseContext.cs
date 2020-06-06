@@ -12,7 +12,7 @@ namespace Maple.Api
         }
 
         public virtual DbSet<CoveragePlanModel> CoveragePlan { get; set; }
-        public virtual DbSet<RateChartModel> RateChart { get; set; }
+      
         public virtual DbSet<ContractsModel> Contracts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,15 +23,7 @@ namespace Maple.Api
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<ContractsModel>(entity =>
-            {
-                entity.HasNoKey();
-            });
-
-            modelBuilder.Entity<RateChartModel>(entity =>
-            {
-                entity.HasNoKey();
-            });
+         
         }
     }
 }

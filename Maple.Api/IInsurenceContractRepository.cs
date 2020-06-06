@@ -34,6 +34,8 @@ namespace Maple.Api
                 await _context.SaveChangesAsync();
             }
         }
+
+
         public async Task Delete(ContractDTO dto)
         {
             var item = _context.Contracts.FirstOrDefault(o => o.Address == dto.Address && o.Country == dto.Country &&
@@ -53,7 +55,7 @@ namespace Maple.Api
 
         private string GetCoveragePlan(string country, DateTime saleDate)
         {
-            return _context.CoveragePlan.SingleOrDefault(o => o.EligibilityCountry.Equals(country, StringComparison.InvariantCultureIgnoreCase)
+            return _context.CoveragePlan.SingleOrDefault(o => o.EligibilityCountry== country
                      && o.EligibilityDateTo >= saleDate && o.EligibilityDateFrom <= saleDate)?.CoveragePlan
                      ?? _context.CoveragePlan.Single(o => o.EligibilityCountry == "*").CoveragePlan;
         }
@@ -97,6 +99,7 @@ namespace Maple.Api
             };
             contract.CoveragePlan = GetCoveragePlan(dto.Country, dto.SaleDate);
             contract.NetPrice = GetNetRate(dto.DateOfBirth, dto.Gender, contract.CoveragePlan);
+            contract.Id = _context.Contracts.Count() + 1;
             await _context.Contracts.AddAsync(contract);
             await _context.SaveChangesAsync();
         }

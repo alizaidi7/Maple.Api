@@ -59,7 +59,8 @@ namespace Maple.Api.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
+        [Route("Delete")]
         public async Task<IActionResult> Delete(ContractDTO dto)
         {
             try

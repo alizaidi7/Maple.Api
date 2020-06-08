@@ -15,6 +15,7 @@ namespace Maple.Api.Controllers
     {
 
         private readonly ILogger<InsurenceContractController> _logger;
+
         private readonly IInsurenceContractService _service;
         public InsurenceContractController(IInsurenceContractService service, ILogger<InsurenceContractController> logger)
         {
